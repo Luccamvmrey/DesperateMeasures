@@ -1,14 +1,18 @@
 import {MilkGenerator} from "./MilkGenerator.ts";
 
+import diego from "../assets/generators/diego.png";
 import queijo from "../assets/generators/queijo.png";
 import iogurte from "../assets/generators/iogurte.png";
 import fazenda from "../assets/generators/fazenda.png";
 import maquinaOrdenha from "../assets/generators/maquina-ordenha.png";
 import mina from "../assets/generators/mina.png";
+import fabrica from "../assets/generators/fabrica.png";
+import multinacional from "../assets/generators/multinacional.png";
 import ovni from "../assets/generators/ovni.png";
 
 export const milkGenerators: MilkGenerator[] = [
     {
+        icon: diego,
         amount: 0,
         generatorName: "Diego",
         milkPerSecond: 0.1,
@@ -294,6 +298,7 @@ export const milkGenerators: MilkGenerator[] = [
         ]
     },
     {
+        icon: fabrica,
         amount: 0,
         generatorName: "Fábrica de Leite",
         milkPerSecond: 7800,
@@ -340,6 +345,7 @@ export const milkGenerators: MilkGenerator[] = [
         ]
     },
     {
+        icon: multinacional,
         amount: 0,
         generatorName: "Multinacional do Leite",
         milkPerSecond: 44000,

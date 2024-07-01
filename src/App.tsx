@@ -7,8 +7,17 @@ import {milkGenerators} from "./models/MilkGenerators.ts";
 import StoreSection from "./components/desperate-measures/main/store-section/StoreSection.tsx";
 import {MilkGenerator} from "./models/MilkGenerator.ts";
 import UpgradeSection from "./components/desperate-measures/main/upgrade-section/UpgradeSection.tsx";
+import {IUser} from "./types/User.ts";
 
 function App() {
+    const [user, setUser] = useState<IUser>({
+        username: "",
+        password: "",
+        save: {
+            milkGenerators: [],
+            milkBucketCounter: 0
+        }
+    })
     const [milkBucketCounter, setMilkBucketCounter] = useState(0);
     const [storeItems, setStoreItems] = useState(milkGenerators)
     const totalMilkPerSecondWithUpgrades = storeItems.reduce((total, item) => {
@@ -108,9 +117,22 @@ function App() {
         // eslint-disable-next-line
     }, [storeItems]);
 
+    useEffect(() => {
+        if (user.username === "" || user.password === "") {
+            return;
+        }
+
+        setMilkBucketCounter(user.save.milkBucketCounter);
+        setStoreItems(user.save.milkGenerators);
+    }, [user])
+
     return (
         <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
-            <Header />
+            <Header
+                setUser={setUser}
+                milkBucketCounter={milkBucketCounter}
+                milkGenerators={storeItems}
+            />
             <MainContent>
                 <div className="flex-1">
                     <MilkerSection
